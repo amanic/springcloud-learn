@@ -13,9 +13,9 @@ import club.hdqyf.springcloud.entities.Dept;
 @RestController
 public class DeptController_Consumer {
 	
-	//private static final String REST_URL_PREFIX = "http://localhost:8001";
+	private static final String REST_URL_PREFIX = "http://localhost:8001";
 	//利用微服务名去访问微服务
-	private static final String REST_URL_PREFIX = "http://MICROSERVICECLOUD-DEPT";
+//	private static final String REST_URL_PREFIX = "http://MICROSERVICECLOUD-DEPT";
 	
 	/**
 	 * RestTemplate 提供了多种便捷访问远程http服务的方法

@@ -4,15 +4,15 @@
 
 <mapper namespace="club.hdqyf.springcloud.dao.DeptDao">
 
-	<select id="findById" resultType="Dept" parameterType="Long">
+	<select id="findById" resultType="club.hdqyf.springcloud.entities.Dept" parameterType="long">
 		select
 		deptno,dname,db_source from dept where deptno=#{deptno};
 	</select>
-	<select id="findAll" resultType="Dept">
+	<select id="findAll" resultType="club.hdqyf.springcloud.entities.Dept">
 		select deptno,dname,db_source
 		from dept;
 	</select>
-	<insert id="addDept" parameterType="Dept">
+	<insert id="addDept" parameterType="club.hdqyf.springcloud.entities.Dept">
 		insert into
 		dept(dname,db_source) VALUES(#{dname},DATABASE());
 	</insert>

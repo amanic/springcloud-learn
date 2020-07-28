@@ -20,7 +20,7 @@ public class DeptController {
 	private DeptService service;
 
 	@Autowired
-	private DiscoveryClient client; // 用于服务发现
+	private DiscoveryClient discoveryClient; // 用于服务发现
 
 	@RequestMapping(value = "/dept/add", method = RequestMethod.POST)
 	public boolean add(@RequestBody Dept dept) {
@@ -40,16 +40,16 @@ public class DeptController {
 	@RequestMapping(value = "/dept/discovery", method = RequestMethod.GET)
 	public Object discovery() {
 		//获取所有的微服务
-		List<String> list = client.getServices();
+		List<String> list = discoveryClient.getServices();
 		System.out.println("**********" + list);
-		
+
 		//找一个叫“MICROSERVICECLOUD-DEPT”的微服务
-		List<ServiceInstance> srvList = client.getInstances("MICROSERVICECLOUD-DEPT");
+		List<ServiceInstance> srvList = discoveryClient.getInstances("MICROSERVICECLOUD-DEPT");
 		//info信息的描述和提供
 		for (ServiceInstance element : srvList) {
 			System.out.println(element.getServiceId() + "\t" + element.getHost() + "\t" + element.getPort() + "\t"
 					+ element.getUri());
 		}
-		return this.client;
+		return this.discoveryClient;
 	}
 }
