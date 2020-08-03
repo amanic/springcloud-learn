@@ -30,10 +30,10 @@ public class DeptController {
 	}
 
 	@RequestMapping(value = "/dept/get/{id}", method = RequestMethod.GET)
-	// 一旦调用服务方法失败并抛出了错误信息后，会自动调用@HystrixCommand标注好的fallbackMethod调用类中的指定方法
+
 	@HystrixCommand(fallbackMethod = "processHystrix_Get")
 	public Dept get(@PathVariable("id") Long id) {
-
+// 一旦调用服务方法失败并抛出了错误信息后，会自动调用@HystrixCommand标注好的fallbackMethod调用类中的指定方法
 		Dept dept = this.service.get(id);
 
 		if (null == dept) {
@@ -47,7 +47,7 @@ public class DeptController {
 		return new Dept().setDeptno(id).setDname("该ID：" + id + "没有对应的信息,null--@HystrixCommand")
 				.setDb_source("no this database in MySQL");
 	}
-	
+
 	@RequestMapping(value = "/dept/list", method = RequestMethod.GET)
 	public List<Dept> list() {
 		return service.list();
@@ -58,7 +58,7 @@ public class DeptController {
 		//获取所有的微服务
 		List<String> list = client.getServices();
 		System.out.println("**********" + list);
-		
+
 		//找一个叫“MICROSERVICECLOUD-DEPT”的微服务
 		List<ServiceInstance> srvList = client.getInstances("MICROSERVICECLOUD-DEPT");
 		//info信息的描述和提供
