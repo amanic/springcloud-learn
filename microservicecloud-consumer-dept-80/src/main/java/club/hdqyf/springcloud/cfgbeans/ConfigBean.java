@@ -11,7 +11,7 @@ import com.netflix.loadbalancer.RetryRule;
 @Configuration
 public class ConfigBean { //boot使用注解@Configuration --> applicationContext.xml
 	@Bean
-//	@LoadBalanced  //当new RestTemplate是自带负载均衡（Ribbon实现的一套客户端负载均衡的工具）
+	@LoadBalanced  //当new RestTemplate是自带负载均衡（Ribbon实现的一套客户端负载均衡的工具）
 	public RestTemplate getRestTemplate() {
 		return new RestTemplate();
 	}
